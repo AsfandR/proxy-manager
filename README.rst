@@ -137,6 +137,12 @@ Example
 
 Documentation for the ``Proxy`` object
 
+Fields
+~~~~~~
+
+``string`` - ip ``string`` - port ``bool`` - is\_auth ``string`` -
+username ``string`` - password
+
 ``Proxy.get_dict``
 ~~~~~~~~~~~~~~~~~~
 

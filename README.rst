@@ -56,8 +56,8 @@ or
 
 These can be combined and alternated.
 
-``ProxyManager()``
-~~~~~~~~~~~~~~~~~~
+``ProxyManager``
+~~~~~~~~~~~~~~~~
 
 ``ProxyManager(proxy_file_path)``
 

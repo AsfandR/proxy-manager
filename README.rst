@@ -34,11 +34,11 @@ Basic Usage
     print(random_proxy) # { 'http':'http://...', 'https':'https://...' }
 
     first_proxy = proxy_manager.next_proxy()
-    print(first_proxy) # { 'http':'http://00.11.222.33:4444', 'https':'https://00.11.222.33:4444' }
+    print(first_proxy.get_dict()) # { 'http':'http://00.11.222.33:4444', 'https':'https://00.11.222.33:4444' }
     second_proxy = proxy_manager.next_proxy()
-    print(second_proxy) # { 'http':'http://username:password@55.66.777.88:9999', 'https':'https://username:password@55.66.777.88:9999' }
+    print(second_proxy.get_dict()) # { 'http':'http://username:password@55.66.777.88:9999', 'https':'https://username:password@55.66.777.88:9999' }
     third_proxy = proxy_manager.next_proxy()
-    print(third_proxy) # { 'http':'http://00.11.222.33:4444', 'https':'https://00.11.222.33:4444' }
+    print(third_proxy.get_dict()) # { 'http':'http://00.11.222.33:4444', 'https':'https://00.11.222.33:4444' }
 
 Documentation
 -------------
@@ -97,8 +97,7 @@ none
 Returns
 ^^^^^^^
 
-``dict`` - Proxy as a dict in the form
-``{ 'http':'http://...', 'https':'https://...' }``
+``Proxy`` - Random proxy as a Proxy object
 
 Example
 ^^^^^^^
@@ -106,7 +105,7 @@ Example
 .. code:: py
 
     random_proxy = proxy_manager.random_proxy()
-    print(random_proxy) # { 'http':'http://...', 'https':'https://...' }
+    print(random_proxy.get_dict()) # { 'http':'http://...', 'https':'https://...' }
 
 ``ProxyManager.next_proxy``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,8 +123,7 @@ none
 Returns
 ^^^^^^^
 
-``dict`` - Proxy as a dict in the form
-``{ 'http':'http://...', 'https':'https://...' }``
+``Proxy`` - Next proxy as a Project object
 
 Example
 ^^^^^^^
@@ -133,4 +131,32 @@ Example
 .. code:: py
 
     first_proxy = proxy_manager.next_proxy()
-    print(first_proxy) # { 'http':'http://00.11.222.33:4444', 'https':'https://00.11.222.33:4444' }
+    print(first_proxy.get_dict()) # { 'http':'http://00.11.222.33:4444', 'https':'https://00.11.222.33:4444' }
+
+--------------
+
+Documentation for the ``Proxy`` object
+
+``Proxy.get_dict``
+~~~~~~~~~~~~~~~~~~
+
+``Proxy.get_dict()``
+
+Parameters
+^^^^^^^^^^
+
+none
+
+Returns
+^^^^^^^
+
+``dict`` - Proxy as a dict in the form
+``{ 'http':'http://...', 'https':'https://...' }`` for use with
+``requests``
+
+Example
+^^^^^^^
+
+\`\`\`py proxy = proxy\_manager.next\_proxy() proxy\_dict =
+first\_proxy.get\_dict() print(proxy\_dict.get\_dict()) # {
+'http':'http://00.11.222.33:4444', 'https':'https://00.11.222.33:4444' }

@@ -12,22 +12,7 @@ class ProxyManager(object):
         proxies = []
         with open(proxy_file_path) as proxy_file:
             for line in proxy_file.readlines():
-                split_line = line.strip('\n').split(':')
-
-                ip = split_line[0]
-                port = split_line[1]
-                proxy = '{0}:{1}'.format(ip, port)
-
-                # If has username/password
-                if len(split_line) == 4:
-                    username = split_line[2]
-                    password = split_line[3]
-                    proxy = '{0}:{1}@{2}'.format(username, password, proxy)
-                
-                proxies.append({
-                    'http': 'http://{}'.format(proxy),
-                    'https': 'https://{}'.format(proxy)
-                })
+                proxies.append(Proxy(line))
         return proxies
 
     def random_proxy(self):
@@ -41,4 +26,24 @@ class ProxyManager(object):
             proxy = self.proxies[self.proxy_number]
             self.proxy_number += 1
             return proxy
-            
+
+class Proxy(object):
+    def __init__(self, proxy_line):
+        split_line = proxy_line.strip('\n').split(':')
+
+        self.ip = split_line[0]
+        self.port = split_line[1]
+        self.full_proxy = '{0}:{1}'.format(self.ip, self.port)
+
+        # If has username/password
+        self.is_auth = len(split_line) == 4
+        if self.is_auth:
+            self.username = split_line[2]
+            self.password = split_line[3]
+            self.full_proxy = '{0}:{1}@{2}'.format(self.username, self.password, self.full_proxy)
+
+    def get_dict(self):
+        return {
+            'http': 'http://{}'.format(self.full_proxy),
+            'https': 'https://{}'.format(self.full_proxy)
+        }

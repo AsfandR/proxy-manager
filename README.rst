@@ -10,7 +10,7 @@ This module is available via pip:
 
 ::
 
-    $ pip install proxymngr
+    $ pip install proxy-manager
 
 Basic Usage
 -----------

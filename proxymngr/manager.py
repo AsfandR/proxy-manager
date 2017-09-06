@@ -13,7 +13,7 @@ class ProxyManager(object):
         with open(proxy_file_path) as proxy_file:
             for line in proxy_file.readlines():
                 proxies.append(Proxy(line))
-        return proxies
+        return proxies or [Proxy()]
 
     def random_proxy(self):
         return random.choice(self.proxies)

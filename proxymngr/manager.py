@@ -28,22 +28,23 @@ class ProxyManager(object):
             return proxy
 
 class Proxy(object):
-    def __init__(self, proxy_line):
-        split_line = proxy_line.strip('\n').split(':')
+    def __init__(self, proxy_line=None):
+        if proxy_line:
+            split_line = proxy_line.strip('\n').split(':')
 
-        self.ip = split_line[0]
-        self.port = split_line[1]
-        self.full_proxy = '{0}:{1}'.format(self.ip, self.port)
+            self.ip = split_line[0]
+            self.port = split_line[1]
+            self.full_proxy = '{0}:{1}'.format(self.ip, self.port)
 
-        # If has username/password
-        self.is_auth = len(split_line) == 4
-        if self.is_auth:
-            self.username = split_line[2]
-            self.password = split_line[3]
-            self.full_proxy = '{0}:{1}@{2}'.format(self.username, self.password, self.full_proxy)
+            # If has username/password
+            self.is_auth = len(split_line) == 4
+            if self.is_auth:
+                self.username = split_line[2]
+                self.password = split_line[3]
+                self.full_proxy = '{0}:{1}@{2}'.format(self.username, self.password, self.full_proxy)
 
     def get_dict(self):
         return {
             'http': 'http://{}'.format(self.full_proxy),
             'https': 'https://{}'.format(self.full_proxy)
-        }
+        } if self.full_proxy else { }

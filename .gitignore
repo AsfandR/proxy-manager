@@ -7,5 +7,6 @@ dist/
 *.so
 *~
 .vscode/
+.cache/
 test.py
 README.md

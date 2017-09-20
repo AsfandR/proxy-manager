@@ -9,7 +9,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='proxy-manager',
-    version='0.0.5',
+    version='0.0.6',
     description='Proxy Manager',
     long_description=long_description,
     url='https://github.com/kfichter/proxy-manager',

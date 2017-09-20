@@ -5,6 +5,8 @@ class Proxy(object):
     def __init__(self, proxy_string=None):
         if proxy_string:
             self.parse_proxy_string(proxy_string)
+        else:
+            self.proxy_string = None
 
     def parse_proxy_string(self, proxy_string):
         split_string = proxy_string.strip('\n').split(':')
@@ -45,7 +47,7 @@ class ProxyManager(object):
     def next_proxy(self):
         if self.current_proxy >= len(self.proxies):
             self.current_proxy = 0
-        
+
         with self.lock:
             proxy = self.proxies[self.current_proxy]
             self.current_proxy += 1

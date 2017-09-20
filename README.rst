@@ -78,7 +78,7 @@ Example
 
 .. code:: py
 
-    from proxymngr import ProxyManager
+    from proxymanager import ProxyManager
 
     proxy_manager = ProxyManager('proxies.txt')
 
